@@ -1,0 +1,8 @@
+Entity:
+- entities/*
+
+Relationship:
+- relationships/*
+
+View:
+- views/*
