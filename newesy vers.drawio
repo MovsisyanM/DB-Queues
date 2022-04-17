@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-04-17T06:42:27.470Z" agent="5.0 (Windows)" etag="Ss34jWT4YwSnI_ETHgSh" version="17.4.5" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-17T06:44:19.138Z" agent="5.0 (Windows)" etag="IWaUPZHvQVRpsEC63_Ym" version="17.4.5" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="1952" dy="1672" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -556,7 +556,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="kaoQ8aSlirqTVfBg7aQL-13" value="Company field" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+        <mxCell id="kaoQ8aSlirqTVfBg7aQL-13" value="Specializes in" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="660" y="530" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="kaoQ8aSlirqTVfBg7aQL-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;endArrow=none;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="PbuRHkahf-0StaOSiOaG-11" target="kaoQ8aSlirqTVfBg7aQL-13" edge="1">
