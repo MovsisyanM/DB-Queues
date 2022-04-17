@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-04-17T05:59:21.612Z" agent="5.0 (Windows)" etag="bzjKqkTelv6UYwI4lKME" version="17.4.5" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-17T06:02:02.955Z" agent="5.0 (Windows)" etag="8VoAfhDhlmJ-dw7JJ9Nk" version="17.4.5" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="1952" dy="1672" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -126,7 +126,7 @@
         <mxCell id="PbuRHkahf-0StaOSiOaG-13" value="Employees&#39; Schedules" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="60" y="240" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="7SDLh1TChbF1hIY82TgF-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=default;endArrow=none;endFill=0;" edge="1" parent="1" source="PbuRHkahf-0StaOSiOaG-14" target="7SDLh1TChbF1hIY82TgF-15">
+        <mxCell id="7SDLh1TChbF1hIY82TgF-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=default;endArrow=none;endFill=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="PbuRHkahf-0StaOSiOaG-14" target="7SDLh1TChbF1hIY82TgF-15">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="PbuRHkahf-0StaOSiOaG-14" value="Branch" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
