@@ -1,28 +1,39 @@
-drop table if exists ticket;
+drop table if exists ticket user_, profile_;
 
 -- Tickets entity:
--- https://github.com/MovsisyanM/DB-Queues/issues/2
+-- (#2) https://github.com/MovsisyanM/DB-Queues/issues/2
 
-create table ticket (
+create table ticket_ (
     id serial primary key,
-    created_date timestamp default current_timestamp not null,
-    target_day timestamp not null,
-    check_in boolean not null default false,
-    last_change_date timestamp default current_timestamp,
-    activated_time timestamp
+    created_date_ timestamp default current_timestamp not null,
+    target_day_ timestamp not null,
+    check_in_ boolean not null default false,
+    last_change_date_ timestamp default current_timestamp,
+    activated_time_ timestamp
 );
 
 
-drop table if exists user_;
-
 -- User entity:
--- https://github.com/MovsisyanM/DB-Queues/issues/1
+-- (#1) https://github.com/MovsisyanM/DB-Queues/issues/1
 
 create table user_ (
     id serial primary key,
-    first_name varchar(100) not null,
-    last_name varchar(100) not null,
-    email varchar(100) not null,
-    joined_since timestamp default current_timestamp
-)
+    first_name_ varchar(100) not null,
+    last_name_ varchar(100) not null,
+    email_ varchar(100) not null,
+    joined_since_ timestamp default current_timestamp
+);
+
+-- Profile entity:
+-- (#27) https://github.com/MovsisyanM/DB-Queues/issues/27
+
+create table profile_ (
+    id serial primary key,
+    location_ varchar(50),
+    timezone_ varchar(50),
+    language_ varchar(20),
+    user_id_ int references user_(id)
+);
+
+
 
