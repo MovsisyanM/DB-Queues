@@ -1,4 +1,4 @@
-drop table if exists ticket user_, profile_;
+drop table if exists ticket user_, profile_, interval_;
 
 -- Tickets entity:
 -- (#2) https://github.com/MovsisyanM/DB-Queues/issues/2
@@ -35,5 +35,13 @@ create table profile_ (
     user_id_ int references user_(id)
 );
 
+-- Interval entity:
+-- (#28) https://github.com/MovsisyanM/DB-Queues/issues/28
 
+create table interval_ (
+    id serial primary key,
+    weekday_ varchar(9),
+    start_hour_ timestamp,
+    end_hour_ timestamp
+);
 
