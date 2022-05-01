@@ -1,4 +1,4 @@
-drop table if exists ticket user_, profile_, interval_;
+drop table if exists ticket_, user_, profile_, interval_, branch_, service_type_, employee_, company_, ticket_log_, ticket_status_, schedule_;
 
 -- Tickets entity:
 -- (#2) https://github.com/MovsisyanM/DB-Queues/issues/2
@@ -46,15 +46,30 @@ create table interval_ (
 );
 
 
+-- Company entity:
+-- (#6)
+
+create table company_ (
+    id serial primary key,
+    name_ varchar(50) not null,
+    email_ varchar(50) not null
+    phone_ varchar(20) not null,
+    address_ varchar(50) not null,
+    start_of_coop_ timestamp default current_timestamp,
+    field varchar(50) not null
+);
+
+
 -- Branch entity:
 -- (#3) https://github.com/MovsisyanM/DB-Queues/issues/3
 
 create table branch_ (
     id serial primary key,
     name_ varchar(50) not null,
-    address_ varchar(50) not null,
-    phone_ varchar(20),
     email_ varchar(50),
+    phone_ varchar(20),
+    address_ varchar(50) not null,
+    company_id_ int references company_(id)
 );
 
 
@@ -80,3 +95,25 @@ create table employee_ (
     position_ varchar(30) not null
 );
 
+
+
+-- Ticket_Status entity:
+-- (#8)
+
+create table ticket_status_ (
+    id serial primary key,
+    name_ varchar(50) not null,
+    description_ varchar(100) not null
+);
+
+
+-- Ticket_Log entity:
+-- (#9)
+
+create table ticket_log_ (
+    id serial primary key,
+    change_date_ timestamp default current_timestamp,
+    ticket_id_ int references ticket_(id),
+    status_id_ int references ticket_status_(id),
+    served_by_ int references employee_(id)
+);
