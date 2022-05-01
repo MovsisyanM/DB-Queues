@@ -96,8 +96,6 @@ create table employee_ (
     position_ varchar(30) not null
 );
 
-
-
 -- Ticket_Status entity:
 -- (#8)
 
@@ -138,4 +136,3 @@ create table field_(
     name_ varchar(50) not null,
     description_ varchar(100)
 );
-)
