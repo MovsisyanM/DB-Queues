@@ -5,10 +5,11 @@ drop table if exists ticket_, user_, profile_, interval_, branch_, service_type_
 
 create table ticket_ (
     id serial primary key,
-    created_date_ timestamp default current_timestamp not null,
     target_day_ timestamp not null,
     check_in_ boolean not null default false,
     last_change_date_ timestamp default current_timestamp,
+    created_date_ timestamp default current_timestamp not null,
+    service_type_id_ int references service_type_(id) not null,
     activated_time_ timestamp
 );
 
