@@ -1,14 +1,15 @@
-drop table if exists ticket_, user_, profile_, interval_, branch_, service_type_, employee_, company_, ticket_log_, ticket_status_, schedule_;
+drop table if exists field_, ticket_, user_, profile_, interval_, branch_, service_type_, employee_, company_, ticket_log_, ticket_status_, schedule_;
 
 -- Tickets entity:
 -- (#2) https://github.com/MovsisyanM/DB-Queues/issues/2
 
 create table ticket_ (
     id serial primary key,
-    created_date_ timestamp default current_timestamp not null,
     target_day_ timestamp not null,
     check_in_ boolean not null default false,
     last_change_date_ timestamp default current_timestamp,
+    created_date_ timestamp default current_timestamp not null,
+    service_type_id_ int references service_type_(id) not null,
     activated_time_ timestamp
 );
 
@@ -95,8 +96,6 @@ create table employee_ (
     position_ varchar(30) not null
 );
 
-
-
 -- Ticket_Status entity:
 -- (#8)
 
@@ -126,4 +125,14 @@ create table schedule_ (
     id serial primary key,
     start_ timestamp not null,
     end_ timestamp not null
+);
+
+
+-- Field entity:
+-- (#7)
+
+create table field_(
+    id serial primary key,
+    name_ varchar(50) not null,
+    description_ varchar(100)
 );
