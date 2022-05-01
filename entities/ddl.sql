@@ -56,3 +56,15 @@ create table branch_ (
     phone_ varchar(20),
     email_ varchar(50),
 );
+
+
+-- Service_Type entity:
+-- (#4)
+
+create table service_type_ (
+    id serial primary key,
+    name_ varchar(50) not null,
+    description_ varchar(199) 
+);
+
+
