@@ -52,7 +52,7 @@ create table interval_ (
 create table company_ (
     id serial primary key,
     name_ varchar(50) not null,
-    email_ varchar(50) not null
+    email_ varchar(50) not null,
     phone_ varchar(20) not null,
     address_ varchar(50) not null,
     start_of_coop_ timestamp default current_timestamp,
@@ -116,4 +116,14 @@ create table ticket_log_ (
     ticket_id_ int references ticket_(id),
     status_id_ int references ticket_status_(id),
     served_by_ int references employee_(id)
+);
+
+
+-- Schedule entity:
+-- (#10)
+
+create table schedule_ (
+    id serial primary key,
+    start_ timestamp not null,
+    end_ timestamp not null
 );
