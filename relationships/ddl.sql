@@ -38,3 +38,11 @@ create table branch_open_interval_ (
     primary key (branch_id_, interval_id_)
 );
 
+
+-- ticket_located_in_branch 
+-- (#22)
+
+create table ticket_located_in_branch_ (
+    ticket_id_ int references ticket_(id) primary key,
+    branch_id_ int references branch_(id)
+);
