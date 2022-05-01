@@ -41,8 +41,8 @@ create table profile_ (
 create table interval_ (
     id serial primary key,
     weekday_ varchar(9),
-    start_hour_ timestamp,
-    end_hour_ timestamp
+    start_hour_ timestamp not null,
+    end_hour_ timestamp not null
 );
 
 
@@ -51,8 +51,8 @@ create table interval_ (
 
 create table branch_ (
     id serial primary key,
-    name_ varchar(50),
-    address_ varchar(50),
+    name_ varchar(50) not null,
+    address_ varchar(50) not null,
     phone_ varchar(20),
     email_ varchar(50),
 );
@@ -64,7 +64,19 @@ create table branch_ (
 create table service_type_ (
     id serial primary key,
     name_ varchar(50) not null,
-    description_ varchar(199) 
+    description_ varchar(199) not null
 );
 
+
+-- Employee entity:
+-- (#5)
+
+create table employee_ (
+    id serial primary key,
+    first_name_ varchar(50) not null,
+    last_name_ varchar(50) not null,
+    email_ varchar(50) not null,
+    phone_ varchar(20) not null,
+    position_ varchar(30) not null
+);
 
