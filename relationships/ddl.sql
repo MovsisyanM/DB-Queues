@@ -46,3 +46,14 @@ create table ticket_located_in_branch_ (
     ticket_id_ int references ticket_(id) primary key,
     branch_id_ int references branch_(id)
 );
+
+
+-- company_provides_service_type relationship:
+-- (#24)
+
+create table company_provides_service_type_ (
+    company_id_ int references company_(id),
+    service_type_id_ int references service_type_(id),
+    primary key (company_id_, service_type_id_)
+);
+)
