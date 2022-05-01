@@ -45,3 +45,14 @@ create table interval_ (
     end_hour_ timestamp
 );
 
+
+-- Branch entity:
+-- (#3) https://github.com/MovsisyanM/DB-Queues/issues/3
+
+create table branch_ (
+    id serial primary key,
+    name_ varchar(50),
+    address_ varchar(50),
+    phone_ varchar(20),
+    email_ varchar(50),
+);
