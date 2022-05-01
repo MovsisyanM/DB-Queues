@@ -1,4 +1,4 @@
-drop table if exists ticket user_, profile_, interval_;
+drop table if exists ticket_, user_, profile_, interval_, branch_, service_type_, employee_, company_, ticket_log_, ticket_status_, schedule_;
 
 -- Tickets entity:
 -- (#2) https://github.com/MovsisyanM/DB-Queues/issues/2
@@ -41,7 +41,89 @@ create table profile_ (
 create table interval_ (
     id serial primary key,
     weekday_ varchar(9),
-    start_hour_ timestamp,
-    end_hour_ timestamp
+    start_hour_ timestamp not null,
+    end_hour_ timestamp not null
 );
 
+
+-- Company entity:
+-- (#6)
+
+create table company_ (
+    id serial primary key,
+    name_ varchar(50) not null,
+    email_ varchar(50) not null,
+    phone_ varchar(20) not null,
+    address_ varchar(50) not null,
+    start_of_coop_ timestamp default current_timestamp,
+    field varchar(50) not null
+);
+
+
+-- Branch entity:
+-- (#3) https://github.com/MovsisyanM/DB-Queues/issues/3
+
+create table branch_ (
+    id serial primary key,
+    name_ varchar(50) not null,
+    email_ varchar(50),
+    phone_ varchar(20),
+    address_ varchar(50) not null,
+    company_id_ int references company_(id)
+);
+
+
+-- Service_Type entity:
+-- (#4)
+
+create table service_type_ (
+    id serial primary key,
+    name_ varchar(50) not null,
+    description_ varchar(199) not null
+);
+
+
+-- Employee entity:
+-- (#5)
+
+create table employee_ (
+    id serial primary key,
+    first_name_ varchar(50) not null,
+    last_name_ varchar(50) not null,
+    email_ varchar(50) not null,
+    phone_ varchar(20) not null,
+    position_ varchar(30) not null
+);
+
+
+
+-- Ticket_Status entity:
+-- (#8)
+
+create table ticket_status_ (
+    id serial primary key,
+    name_ varchar(50) not null,
+    description_ varchar(100) not null
+);
+
+
+-- Ticket_Log entity:
+-- (#9)
+
+create table ticket_log_ (
+    id serial primary key,
+    change_date_ timestamp default current_timestamp,
+    ticket_id_ int references ticket_(id),
+    status_id_ int references ticket_status_(id),
+    served_by_ int references employee_(id)
+);
+
+
+-- Schedule entity:
+-- (#10)
+
+create table schedule_ (
+    id serial primary key,
+    start_ timestamp not null,
+    end_ timestamp not null
+);
