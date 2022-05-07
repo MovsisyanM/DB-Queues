@@ -1,18 +1,4 @@
-drop table if exists field_, ticket_, user_, profile_, interval_, branch_, service_type_, employee_, company_, ticket_log_, ticket_status_, schedule_;
-
--- Tickets entity:
--- (#2) https://github.com/MovsisyanM/DB-Queues/issues/2
-
-create table ticket_ (
-    id serial primary key,
-    target_day_ timestamp not null,
-    check_in_ boolean not null default false,
-    last_change_date_ timestamp default current_timestamp,
-    created_date_ timestamp default current_timestamp not null,
-    service_type_id_ int references service_type_(id) not null,
-    activated_time_ timestamp
-);
-
+drop table if exists field_, ticket_, user_, profile_, interval_, branch_, service_type_, employee_, company_, ticket_log_, ticket_status_, schedule_ cascade;
 
 -- User entity:
 -- (#1) https://github.com/MovsisyanM/DB-Queues/issues/1
@@ -42,8 +28,8 @@ create table profile_ (
 create table interval_ (
     id serial primary key,
     weekday_ varchar(9),
-    start_hour_ timestamp not null,
-    end_hour_ timestamp not null
+    start_hour_ time not null,
+    end_hour_ time not null
 );
 
 
@@ -81,6 +67,19 @@ create table service_type_ (
     id serial primary key,
     name_ varchar(50) not null,
     description_ varchar(199) not null
+);
+
+-- Tickets entity:
+-- (#2) https://github.com/MovsisyanM/DB-Queues/issues/2
+
+create table ticket_ (
+    id serial primary key,
+    target_day_ timestamp not null,
+    check_in_ boolean not null default false,
+    last_change_date_ timestamp default current_timestamp,
+    created_date_ timestamp default current_timestamp not null,
+    service_type_id_ int references service_type_(id) not null,
+    activated_time_ timestamp
 );
 
 
@@ -136,3 +135,5 @@ create table field_(
     name_ varchar(50) not null,
     description_ varchar(100)
 );
+
+

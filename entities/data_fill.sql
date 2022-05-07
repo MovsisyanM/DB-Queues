@@ -52,3 +52,16 @@ values ('Bronson Canyon', '+4', 'Klingon', 1),
 
 select * from profile_;
 
+truncate table interval_ cascade;
+
+insert into interval_ (id, weekday_, start_hour_, end_hour_) 
+values (0, 'Monday', '9:00:00', '18:00:00'),
+    (1, 'Tuesday', '9:00:00', '18:00:00'),
+    (2, 'Wednesday', '9:00:00', '18:00:00'),
+    (3, 'Thursday', '9:00:00', '18:00:00'),
+    (4, 'Friday', '9:00:00', '18:00:00'),
+    (5, 'Saturday', '9:00:00', '18:00:00'),
+    (6, 'Sunday', '9:00:00', '18:00:00');
+
+select * from interval_;
+
