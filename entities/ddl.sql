@@ -43,7 +43,7 @@ create table company_ (
     phone_ varchar(20) not null,
     address_ varchar(50) not null,
     start_of_coop_ timestamp default current_timestamp,
-    field varchar(50) not null
+    field_ varchar(50) not null
 );
 
 
@@ -135,5 +135,6 @@ create table field_(
     name_ varchar(50) not null,
     description_ varchar(100)
 );
+
 
 

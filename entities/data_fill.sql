@@ -52,6 +52,10 @@ values ('Bronson Canyon', '+4', 'Klingon', 1),
 
 select * from profile_;
 
+/*markdown
+Filling the interval table...
+*/
+
 truncate table interval_ cascade;
 
 insert into interval_ (id, weekday_, start_hour_, end_hour_) 
@@ -64,4 +68,19 @@ values (0, 'Monday', '9:00:00', '18:00:00'),
     (6, 'Sunday', '9:00:00', '18:00:00');
 
 select * from interval_;
+
+/*markdown
+Filling the company table...
+*/
+
+truncate table company_ cascade;
+
+insert into company_ (id, name_, email_, phone_, address_, start_of_coop_, field_) 
+values (0, 'DataBASS', 'contact@databass.com', '+1-800-DATABASS', '1123 Main St, Los Angeles, CA, 90001', '2019-01-01', 'Data Science'),
+    (1, 'Covenant', 'contact@covenant.com', '+1-800-COVENT', '1123 Main St, Dubai', '2020-02-01', 'Space tourism'),
+    (2, 'BuildersGuild', 'contact@builders.gld', '+1-800-BUILDERS', '1123 Main St, London', '2019-01-01', 'Construction'),
+    (3, 'DestroyersGuild', 'contact@destroyers.gld', '+1-800-DESTROYERS', '1123 Main St, Paris', '2019-01-01', 'Destruction'),
+    (4, 'Gugo', 'gugo@mail.am', '+1-800-GUGO', '1123 Main St, Moscow', '2019-01-01', 'Search engine');
+
+select * from company_;
 
