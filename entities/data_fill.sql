@@ -99,3 +99,34 @@ values (0, 'DataBASS HQ', 'hq@databass.com', '+1-800-DATABASS', '1123 Main St, L
     (5, 'DataBASS Secondary', 'secondary@databass.com', '+1-800-DATABASS', '3 Secondary St, Los Angeles, CA, 90001', 0);
 
 select * from branch_;
+
+
+truncate table service_type_ cascade;
+
+insert into service_type_ (id, name_, description_) 
+values (0, 'Data Science', 'Data modeling as a service'),
+    (1, 'Space tourism', 'Interstellar tourism at near light speeds'),
+    (2, 'Construction', 'Building buildings, roads and bridges'),
+    (3, 'Destruction', 'Destroying buidlings, roads and bridges'),
+    (4, 'Web search', 'Providing answers based on the entirety of human knowledge');
+
+select * from service_type_;
+
+
+truncate table ticket_ cascade;
+
+insert into ticket_ (id, target_day_, check_in_, created_date_, service_type_id_, activated_time) 
+values (0, '2022-02-01 13:44:00', TRUE, '2022-02-01 13:34:00', 0, '2022-02-01 13:43:30'),
+    (1, '2022-02-04 15:23:00', TRUE, '2022-02-01 13:10:00', 3, '2022-02-01 15:44:05'),
+    (2, '2022-02-05 10:03:00', TRUE, '2022-02-05 09:00:06', 3, '2022-02-05 10:01:09'),
+    (3, '2022-02-05 10:15:00', FALSE, '2022-02-05 09:00:06', 2, NULL),
+    (4, '2022-02-07 11:15:00', TRUE, '2022-02-07 09:24:06', 1, '2022-02-07 12:01:09'),
+    (5, '2022-02-08 12:10:00', TRUE, '2022-02-08 09:23:08', 4, '2022-02-08 12:06:04'),
+    (6, '2022-02-09 12:15:00', TRUE, '2022-02-09 09:28:07', 1, '2022-02-09 12:05:03'),
+    (7, '2022-02-09 14:15:00', False, '2022-02-09 10:30:03', 4, NULL),
+    (8, '2022-02-19 13:15:00', TRUE, '2022-02-19 12:30:20', 0, '2022-02-19 14:09:02');
+    
+
+select * from ticket_;
+
+
