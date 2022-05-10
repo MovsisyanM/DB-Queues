@@ -78,9 +78,24 @@ truncate table company_ cascade;
 insert into company_ (id, name_, email_, phone_, address_, start_of_coop_, field_) 
 values (0, 'DataBASS', 'contact@databass.com', '+1-800-DATABASS', '1123 Main St, Los Angeles, CA, 90001', '2019-01-01', 'Data Science'),
     (1, 'Covenant', 'contact@covenant.com', '+1-800-COVENT', '1123 Main St, Dubai', '2020-02-01', 'Space tourism'),
-    (2, 'BuildersGuild', 'contact@builders.gld', '+1-800-BUILDERS', '1123 Main St, London', '2019-01-01', 'Construction'),
-    (3, 'DestroyersGuild', 'contact@destroyers.gld', '+1-800-DESTROYERS', '1123 Main St, Paris', '2019-01-01', 'Destruction'),
-    (4, 'Gugo', 'gugo@mail.am', '+1-800-GUGO', '1123 Main St, Moscow', '2019-01-01', 'Search engine');
+    (2, 'BuildersGuild', 'contact@builders.gld', '+1-800-BUILDERS', '1123 Main St, London', '2020-01-01', 'Construction'),
+    (3, 'DestroyersGuild', 'contact@destroyers.gld', '+1-800-DESTROYERS', '1123 Main St, Paris', '2022-01-01', 'Destruction'),
+    (4, 'Gugo', 'gugo@mail.am', '+1-800-GUGO', '1123 Main St, Moscow', '2017-01-01', 'Search engine');
 
 select * from company_;
 
+/*markdown
+Filling the branch table...
+*/
+
+truncate table branch_ cascade;
+
+insert into branch_ (id, name_, email_, phone_, address_, company_id_) 
+values (0, 'DataBASS HQ', 'hq@databass.com', '+1-800-DATABASS', '1123 Main St, Los Angeles, CA, 90001', 0),
+    (1, 'Covenant HQ', 'hq@covenant.com', '+1-800-COVENT', '1123 Main St, Dubai', 1),
+    (2, 'BuildersGuild HQ', 'hq@covenant.com', '+1-800-BUILDERS', '1123 Main St, London', 2),
+    (3, 'DestroyersGuild HQ', 'hq@builders.gld', '+1-800-DESTROYERS', '1123 Main St, Paris', 3),
+    (4, 'Gugo HQ', 'gugo@mail.am', '+1-800-GUGO', '1123 Main St, Moscow', 4),
+    (5, 'DataBASS Secondary', 'secondary@databass.com', '+1-800-DATABASS', '3 Secondary St, Los Angeles, CA, 90001', 0);
+
+select * from branch_;
