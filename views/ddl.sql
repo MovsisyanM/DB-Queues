@@ -128,3 +128,37 @@ create or replace view Company_avg_service_time as (
 
 select * from Company_avg_service_time;
 
+drop view if exists Employee_works_at_company cascade;
+
+create or replace view Employee_works_at_company as (
+    select employee_id_, schedule_id_, company_id_ from employee_works_at_
+    left join branch_
+        on branch_.id = employee_works_at_.branch_id_
+);
+
+select * from Employee_works_at_company;
+
+drop view if exists Company_work_stats cascade;
+
+create or replace view Company_work_stats as (
+    select company_id_ as company_id, 
+        extract(week from start_) as days_worked_per_week, 
+        avg(end_ - start_) as avg_per_day
+    from Employee_works_at_company
+    left join schedule_
+        on schedule_.id = Employee_works_at_company.schedule_id_
+    group by company_id, days_worked_per_week
+);
+
+select * from Company_work_stats;
+
+drop view if exists Company_avg_weekly_work_per_employee cascade;
+
+create or replace view Company_avg_weekly_work_per_employee as (
+    select company_id, 
+        days_worked_per_week * avg_per_day as avg_per_week
+    from Company_work_stats
+);
+
+select * from Company_avg_weekly_work_per_employee;
+
