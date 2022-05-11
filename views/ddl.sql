@@ -78,3 +78,17 @@ create or replace view Employee_avg_service_time as (
 
 select * from Employee_avg_service_time;
 
+drop view if exists Top_companies_by_tickets_booked;
+
+create or replace view Top_companies_by_tickets_booked as (
+    select company_id_ as company_id,
+        count(*) as tickets_booked
+    from ticket_located_in_branch_
+    left join branch_ 
+        on branch_.id = ticket_located_in_branch_.branch_id_
+    group by company_id
+    order by tickets_booked desc
+);
+
+select * from Top_companies_by_tickets_booked;
+
