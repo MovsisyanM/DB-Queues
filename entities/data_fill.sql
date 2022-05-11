@@ -22,11 +22,8 @@ values (0, 'Bob', 'Builderian', 'builderian@queues.db'),
     (17, 'Pepe', 'Frogyan', 'frogyan@queues.db'),
     (18, 'Doge', 'Coin', 'coin@queues.db');
 
-select * from user_
+select * from user_;
 
--- /*markdown
--- Inserting data into profiles table...
--- */
 
 truncate table profile_ cascade;
 
@@ -52,9 +49,6 @@ values ('Bronson Canyon', '+4', 'Klingon', 1),
 
 select * from profile_;
 
--- /*markdown
--- Filling the interval table...
--- */
 
 truncate table interval_ cascade;
 
@@ -69,9 +63,7 @@ values (0, 'Monday', '9:00:00', '18:00:00'),
 
 select * from interval_;
 
--- /*markdown
--- Filling the company table...
--- */
+
 
 truncate table company_ cascade;
 
@@ -84,9 +76,7 @@ values (0, 'DataBASS', 'contact@databass.com', '+1-800-DATABASS', '1123 Main St,
 
 select * from company_;
 
--- /*markdown
--- Filling the branch table...
--- */
+
 
 truncate table branch_ cascade;
 
