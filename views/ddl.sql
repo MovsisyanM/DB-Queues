@@ -62,3 +62,19 @@ create or replace view User_avg_late as (
 
 select * from User_avg_late;
 
+drop view if exists Employee_avg_service_time;
+
+create or replace view Employee_avg_service_time as (
+    select t.served_by_ as employee_id, 
+        avg(t.diff) as avg_service_time
+    from (
+        select ticket_id_, 
+            served_by_, 
+            max(change_date_) - min(change_date_) as diff
+        from ticket_log_
+        group by ticket_id_, served_by_) t
+    group by t.served_by_
+);
+
+select * from Employee_avg_service_time;
+
