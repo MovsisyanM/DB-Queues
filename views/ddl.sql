@@ -202,3 +202,80 @@ create or replace view Most_used_languages_proportion as (
 
 select * from Most_used_languages_proportion;
 
+drop view if exists Tickets_served_a_day cascade;
+
+create or replace view Tickets_served_a_day as (
+    select extract(day from activated_time_) as day, count(*) 
+    from ticket_ 
+    where check_in_ = true
+    group by day
+);
+
+select * from Tickets_served_a_day;
+
+
+
+drop view if exists Tickets_served_a_week cascade;
+
+create or replace view Tickets_served_a_week as (
+    select extract(week from activated_time_) as week, count(*) 
+    from ticket_ 
+    where check_in_ = true
+    group by week
+);
+
+select * from Tickets_served_a_week;
+
+
+
+drop view if exists Tickets_served_a_month cascade;
+
+create or replace view Tickets_served_a_month as (
+    select extract(month from activated_time_) as month, count(*) 
+    from ticket_ 
+    where check_in_ = true
+    group by month
+);
+
+select * from Tickets_served_a_month;
+
+
+drop view if exists Tickets_served_a_year cascade;
+
+create or replace view Tickets_served_a_year as (
+    select extract(year from activated_time_) as year, count(*) 
+    from ticket_ 
+    where check_in_ = true
+    group by year
+);
+
+select * from Tickets_served_a_year;
+
+
+
+drop view if exists Tickets_served_an_hour cascade;
+
+create or replace view Tickets_served_an_hour as (
+    select extract(hour from activated_time_) as hour, count(*) 
+    from ticket_ 
+    where check_in_ = true
+    group by hour
+);
+
+select * from Tickets_served_an_hour;
+
+
+drop view if exists Tickets_served_a_date cascade;
+
+create or replace view Tickets_served_a_date as (
+    select extract(year from activated_time_) as year, 
+        extract(month from activated_time_) as month,
+        extract(day from activated_time_) as day,
+        count(*) 
+    from ticket_ 
+    where check_in_ = true
+    group by year, month, day
+);
+
+select * from Tickets_served_a_date;
+
