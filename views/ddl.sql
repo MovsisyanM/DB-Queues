@@ -1,7 +1,8 @@
 drop view if exists Most_used_languages;
 
 create or replace view Most_used_languages as (
-    select language_, count(*) as users
+    select language_ as language, 
+        count(*) as users
     from profile_
     group by language_
     order by users desc
@@ -191,4 +192,13 @@ create or replace view Users_per_year as (
 );
 
 select * from Users_per_year;
+
+drop view if exists Most_used_languages_proportion cascade;
+
+create or replace view Most_used_languages_proportion as (
+    select language, round(cast(users as decimal(7,2)) / cast(n as decimal(7,2)) * 100.0) as percent
+    from Most_used_languages, (select count(*) n from profile_) as total
+);
+
+select * from Most_used_languages_proportion;
 
