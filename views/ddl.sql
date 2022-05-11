@@ -331,7 +331,8 @@ select * from Employees_in_company;
 
 drop view if exists Employees_in_branch_company;
 
-create or replace view Employees_in_branch_company as (
+create or replace view Employees_in_branch_company
+as (
     select company_id, branch_id, count(*) 
     from (
         select distinct e.employee_id_, 
@@ -340,7 +341,6 @@ create or replace view Employees_in_branch_company as (
         from Employee_works_at_company e
         left join employee_works_at_ b
             on e.employee_id_ = b.employee_id_) a
-    
     group by company_id, branch_id
 );
 
@@ -355,4 +355,18 @@ create or replace view Branches_in_company as (
 );
 
 select * from Branches_in_company;
+
+drop view if exists Tickets_per_employee_per_company;
+
+create or replace view Tickets_per_employee_per_company as (
+    select distinct employee_id_ as employee_id, 
+        company_id_ as company_id, 
+        tickets_served
+    from Employee_stats
+    left join Employee_works_at_company
+        on Employee_stats.employee_id = Employee_works_at_company.employee_id_
+    order by tickets_served desc, company_id
+);
+
+select * from Tickets_per_employee_per_company;
 
