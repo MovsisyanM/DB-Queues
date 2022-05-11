@@ -279,3 +279,13 @@ create or replace view Tickets_served_a_date as (
 
 select * from Tickets_served_a_date;
 
+drop view if exists Tickets_served cascade;
+
+create or replace view Tickets_served as (
+    select count(*) 
+    from ticket_
+    where check_in_ = true
+);
+
+select * from Tickets_served;
+
