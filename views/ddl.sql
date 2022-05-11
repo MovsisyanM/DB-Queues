@@ -162,3 +162,33 @@ create or replace view Company_avg_weekly_work_per_employee as (
 
 select * from Company_avg_weekly_work_per_employee;
 
+drop view if exists Users_per_week cascade;
+
+create or replace view Users_per_week as (
+    select extract(week from joined_since_) as week, count(*) as users
+    from user_
+    group by week
+);
+
+select * from Users_per_week;
+
+drop view if exists Users_per_month cascade;
+
+create or replace view Users_per_month as (
+    select extract(month from joined_since_) as month, count(*) as users
+    from user_
+    group by month
+);
+
+select * from Users_per_month;
+
+drop view if exists Users_per_year cascade;
+
+create or replace view Users_per_year as (
+    select extract(year from joined_since_) as year, count(*) as users
+    from user_
+    group by year
+);
+
+select * from Users_per_year;
+
