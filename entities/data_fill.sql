@@ -93,8 +93,8 @@ truncate table branch_ cascade;
 insert into branch_ (id, name_, email_, phone_, address_, company_id_) 
 values (0, 'DataBASS HQ', 'hq@databass.com', '+1-800-DATABASS', '1123 Main St, Los Angeles, CA, 90001', 0),
     (1, 'Covenant HQ', 'hq@covenant.com', '+1-800-COVENT', '1123 Main St, Dubai', 1),
-    (2, 'BuildersGuild HQ', 'hq@covenant.com', '+1-800-BUILDERS', '1123 Main St, London', 2),
-    (3, 'DestroyersGuild HQ', 'hq@builders.gld', '+1-800-DESTROYERS', '1123 Main St, Paris', 3),
+    (2, 'BuildersGuild HQ', 'hq@builders.gld', '+1-800-BUILDERS', '1123 Main St, London', 2),
+    (3, 'DestroyersGuild HQ', 'hq@destroyers.gld', '+1-800-DESTROYERS', '1123 Main St, Paris', 3),
     (4, 'Gugo HQ', 'gugo@mail.am', '+1-800-GUGO', '1123 Main St, Moscow', 4),
     (5, 'DataBASS Secondary', 'secondary@databass.com', '+1-800-DATABASS', '3 Secondary St, Los Angeles, CA, 90001', 0);
 
