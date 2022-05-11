@@ -115,6 +115,7 @@ select * from service_type_;
 truncate table ticket_ cascade;
 
 insert into ticket_ (id, target_day_, check_in_, created_date_, service_type_id_, activated_time_) 
+
 values (0, '2022-02-01 13:44:00', TRUE, '2022-02-01 13:34:00', 0, '2022-02-01 13:43:30'),
     (1, '2022-02-04 15:23:00', TRUE, '2022-02-01 13:10:00', 3, '2022-02-01 15:44:05'),
     (2, '2022-02-05 10:03:00', TRUE, '2022-02-05 09:00:06', 3, '2022-02-05 10:01:09'),
