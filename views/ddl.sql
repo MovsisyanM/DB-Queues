@@ -289,3 +289,20 @@ create or replace view Tickets_served as (
 
 select * from Tickets_served;
 
+drop view if exists Top_companies_by_tickets_served;
+
+create or replace view Top_companies_by_tickets_served as (
+    select company_id_ as company_id,
+        count(*) as tickets_booked
+    from ticket_located_in_branch_
+    left join branch_ 
+        on branch_.id = ticket_located_in_branch_.branch_id_
+    left join ticket_
+        on ticket_.id = ticket_located_in_branch_.ticket_id_
+    where ticket_.check_in_ = true
+    group by company_id
+    order by tickets_booked desc
+);
+
+select * from Top_companies_by_tickets_served;
+
