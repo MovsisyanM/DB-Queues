@@ -306,3 +306,16 @@ create or replace view Top_companies_by_tickets_served as (
 
 select * from Top_companies_by_tickets_served;
 
+drop view if exists Avg_wait_time_by_branch;
+
+create or replace view Avg_wait_time_by_branch as (
+    select branch_id_ as branch_id,
+        avg(diff) as avg_wait_time
+    from Ticket_wait_time
+    left join ticket_located_in_branch_
+        on ticket_located_in_branch_.ticket_id_ = Ticket_wait_time.ticket_id_
+    group by branch_id_
+);
+
+select * from Avg_wait_time_by_branch;
+
