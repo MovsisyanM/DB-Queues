@@ -319,3 +319,13 @@ create or replace view Avg_wait_time_by_branch as (
 
 select * from Avg_wait_time_by_branch;
 
+drop view if exists Employees_in_company;
+
+create or replace view Employees_in_company as (
+    select company_id, count(*) 
+    from (select distinct employee_id_, company_id_ as company_id from Employee_works_at_company) a
+    group by company_id
+);
+
+select * from Employees_in_company;
+
