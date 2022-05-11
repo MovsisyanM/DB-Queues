@@ -329,3 +329,20 @@ create or replace view Employees_in_company as (
 
 select * from Employees_in_company;
 
+drop view if exists Employees_in_branch_company;
+
+create or replace view Employees_in_branch_company as (
+    select company_id, branch_id, count(*) 
+    from (
+        select distinct e.employee_id_, 
+            company_id_ as company_id,
+            branch_id_ as branch_id
+        from Employee_works_at_company e
+        left join employee_works_at_ b
+            on e.employee_id_ = b.employee_id_) a
+    
+    group by company_id, branch_id
+);
+
+select * from Employees_in_branch_company;
+
