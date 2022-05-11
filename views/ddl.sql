@@ -346,3 +346,13 @@ create or replace view Employees_in_branch_company as (
 
 select * from Employees_in_branch_company;
 
+drop view if exists Branches_in_company;
+
+create or replace view Branches_in_company as (
+    select company_id_ as company_id, count(*)
+    from branch_
+    group by company_id
+);
+
+select * from Branches_in_company;
+
