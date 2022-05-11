@@ -49,7 +49,7 @@ create or replace view User_check_in_rate as (
 
 select * from User_check_in_rate;
 
-drop view if exists User_avg_late;
+drop view if exists User_avg_late cascade;
 
 create or replace view User_avg_late as (
     select user_id_, 
@@ -62,18 +62,32 @@ create or replace view User_avg_late as (
 
 select * from User_avg_late;
 
-drop view if exists Employee_avg_service_time;
+drop view if exists Ticket_wait_time cascade;
+
+create or replace view Ticket_wait_time as (
+    select ticket_id_, 
+        served_by_, 
+        max(change_date_) - min(change_date_) as diff
+    from ticket_log_
+    group by ticket_id_, served_by_
+);
+
+select * from Ticket_wait_time;
+
+drop view if exists Employee_stats cascade;
+
+create or replace view Employee_stats as (
+    select served_by_ as employee_id, 
+        avg(diff) as avg_service_time,
+        count(ticket_id_) as tickets_served
+    from Ticket_wait_time
+    group by served_by_
+);
+
+drop view if exists Employee_avg_service_time cascade;
 
 create or replace view Employee_avg_service_time as (
-    select t.served_by_ as employee_id, 
-        avg(t.diff) as avg_service_time
-    from (
-        select ticket_id_, 
-            served_by_, 
-            max(change_date_) - min(change_date_) as diff
-        from ticket_log_
-        group by ticket_id_, served_by_) t
-    group by t.served_by_
+    select employee_id, avg_service_time from Employee_stats
 );
 
 select * from Employee_avg_service_time;
@@ -91,4 +105,26 @@ create or replace view Top_companies_by_tickets_booked as (
 );
 
 select * from Top_companies_by_tickets_booked;
+
+drop view if exists Employee_avg_service_time cascade;
+
+create or replace view Employee_avg_service_time as (
+    select employee_id, avg_service_time from Employee_stats
+);
+
+select * from Employee_avg_service_time;
+
+drop view if exists Company_avg_service_time cascade;
+
+create or replace view Company_avg_service_time as (
+    select company_id_, avg(diff) as avg_service_time
+    from Ticket_wait_time
+    left join ticket_located_in_branch_
+        on ticket_located_in_branch_.ticket_id_ = Ticket_wait_time.ticket_id_
+    left join branch_
+        on branch_.id = ticket_located_in_branch_.branch_id_
+    group by company_id_
+);
+
+select * from Company_avg_service_time;
 
