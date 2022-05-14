@@ -24,19 +24,6 @@ create or replace view Most_visited_branches as (
 select * from Most_visited_branches;
 
 
-drop view if exists Ticket_miss_rate_by_user;
-
-create or replace view Ticket_miss_rate_by_user as (
-    select branch_id_ as branch, 
-        count(ticket_id_) as visits 
-    from ticket_located_in_branch_
-    group by branch_id_
-    order by visits desc
-);
-
-select * from Ticket_miss_rate_by_user;
-
-
 drop view if exists User_check_in_rate;
 
 
@@ -369,4 +356,38 @@ create or replace view Tickets_per_employee_per_company as (
 );
 
 select * from Tickets_per_employee_per_company;
+
+
+
+select * from Ticket_miss_rate_by_user;
+
+drop view if exists Ticket_miss_rate_by_branch;
+
+create or replace view Ticket_miss_rate_by_branch as (
+    select branch_id_ as branch, 
+        count(ticket_log_.ticket_id_) as missed_tickets 
+    from ticket_located_in_branch_
+    left join ticket_log_
+        on ticket_log_.ticket_id_ = ticket_located_in_branch_.ticket_id_
+    where ticket_log_.status_id_ = 4
+    group by branch_id_
+    order by missed_tickets desc
+);
+
+select * from Ticket_miss_rate_by_branch;
+
+drop view if exists Ticket_miss_rate_by_user;
+
+create or replace view Ticket_miss_rate_by_user as (
+    select user_id_ as user, 
+        count(ticket_log_.ticket_id_) as missed_tickets 
+    from user_book_ticket_
+    left join ticket_log_
+        on ticket_log_.ticket_id_ = user_book_ticket_.ticket_id_
+    where ticket_log_.status_id_ = 4
+    group by user_id_
+    order by missed_tickets desc
+);
+
+select * from Ticket_miss_rate_by_user;
 
