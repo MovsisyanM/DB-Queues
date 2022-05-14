@@ -1,4 +1,4 @@
-drop view if exists Most_used_languages;
+drop view if exists Most_used_languages cascade;
 
 create or replace view Most_used_languages as (
     select language_ as language, 
@@ -11,7 +11,7 @@ create or replace view Most_used_languages as (
 select * from Most_used_languages;
 
 
-drop view if exists Most_visited_branches;
+drop view if exists Most_visited_branches cascade;
 
 create or replace view Most_visited_branches as (
     select branch_id_ as branch, 
@@ -24,7 +24,7 @@ create or replace view Most_visited_branches as (
 select * from Most_visited_branches;
 
 
-drop view if exists User_check_in_rate;
+drop view if exists User_check_in_rate cascade;
 
 
 create or replace view User_check_in_rate as (
