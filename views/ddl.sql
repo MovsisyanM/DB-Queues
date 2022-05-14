@@ -1,4 +1,4 @@
-drop view if exists Most_used_languages;
+drop view if exists Most_used_languages cascade;
 
 create or replace view Most_used_languages as (
     select language_ as language, 
@@ -11,7 +11,7 @@ create or replace view Most_used_languages as (
 select * from Most_used_languages;
 
 
-drop view if exists Most_visited_branches;
+drop view if exists Most_visited_branches cascade;
 
 create or replace view Most_visited_branches as (
     select branch_id_ as branch, 
@@ -24,20 +24,7 @@ create or replace view Most_visited_branches as (
 select * from Most_visited_branches;
 
 
-drop view if exists Ticket_miss_rate_by_user;
-
-create or replace view Ticket_miss_rate_by_user as (
-    select branch_id_ as branch, 
-        count(ticket_id_) as visits 
-    from ticket_located_in_branch_
-    group by branch_id_
-    order by visits desc
-);
-
-select * from Ticket_miss_rate_by_user;
-
-
-drop view if exists User_check_in_rate;
+drop view if exists User_check_in_rate cascade;
 
 
 create or replace view User_check_in_rate as (
@@ -70,6 +57,7 @@ create or replace view Ticket_wait_time as (
         served_by_, 
         max(change_date_) - min(change_date_) as diff
     from ticket_log_
+    where ticket_id_ not in (select ticket_id_ from ticket_ where status_id_ = 3)
     group by ticket_id_, served_by_
 );
 
@@ -124,6 +112,9 @@ create or replace view Company_avg_service_time as (
         on ticket_located_in_branch_.ticket_id_ = Ticket_wait_time.ticket_id_
     left join branch_
         on branch_.id = ticket_located_in_branch_.branch_id_
+    left join ticket_log_
+        on ticket_log_.ticket_id_ = Ticket_wait_time.ticket_id_
+    where not ticket_log_.status_id_ = 3
     group by company_id_
 );
 
@@ -314,6 +305,9 @@ create or replace view Avg_wait_time_by_branch as (
     from Ticket_wait_time
     left join ticket_located_in_branch_
         on ticket_located_in_branch_.ticket_id_ = Ticket_wait_time.ticket_id_
+    left join ticket_log_
+        on ticket_log_.ticket_id_ = Ticket_wait_time.ticket_id_
+    where not ticket_log_.status_id_ = 3
     group by branch_id_
 );
 
@@ -370,3 +364,36 @@ create or replace view Tickets_per_employee_per_company as (
 
 select * from Tickets_per_employee_per_company;
 
+
+
+select * from Ticket_miss_rate_by_user;
+
+drop view if exists Ticket_miss_rate_by_branch;
+
+create or replace view Ticket_miss_rate_by_branch as (
+    select branch_id_ as branch, 
+        count(ticket_log_.ticket_id_) as missed_tickets 
+    from ticket_located_in_branch_
+    left join ticket_log_
+        on ticket_log_.ticket_id_ = ticket_located_in_branch_.ticket_id_
+    where ticket_log_.status_id_ = 3
+    group by branch_id_
+    order by missed_tickets desc
+);
+
+select * from Ticket_miss_rate_by_branch;
+
+drop view if exists Ticket_miss_rate_by_user;
+
+create or replace view Ticket_miss_rate_by_user as (
+    select user_id_ as user, 
+        count(ticket_log_.ticket_id_) as missed_tickets 
+    from user_book_ticket_
+    left join ticket_log_
+        on ticket_log_.ticket_id_ = user_book_ticket_.ticket_id_
+    where ticket_log_.status_id_ = 3
+    group by user_id_
+    order by missed_tickets desc
+);
+
+select * from Ticket_miss_rate_by_user;
