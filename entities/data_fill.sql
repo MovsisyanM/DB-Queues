@@ -146,10 +146,10 @@ select * from employee_;
 truncate table ticket_status_ cascade;
 
 insert into ticket_status_ (id, name_, description_) 
-values (0, 'Open', 'Ticket is open'),
+values (0, 'Called', 'Ticket is Called'),
     (1, 'Closed', 'Ticket is closed'),
     (2, 'In progress', 'Ticket is in progress'),
-    (3, 'Rejected', 'Ticket is rejected');
+    (3, 'Missed', 'Ticket is Missed');
 
 
 select * from ticket_status_;
