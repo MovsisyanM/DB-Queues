@@ -57,6 +57,7 @@ create or replace view Ticket_wait_time as (
         served_by_, 
         max(change_date_) - min(change_date_) as diff
     from ticket_log_
+    where ticket_id_ not in (select ticket_id_ from ticket_ where status_id_ = 3)
     group by ticket_id_, served_by_
 );
 
@@ -111,6 +112,9 @@ create or replace view Company_avg_service_time as (
         on ticket_located_in_branch_.ticket_id_ = Ticket_wait_time.ticket_id_
     left join branch_
         on branch_.id = ticket_located_in_branch_.branch_id_
+    left join ticket_log_
+        on ticket_log_.ticket_id_ = Ticket_wait_time.ticket_id_
+    where not ticket_log_.status_id_ = 3
     group by company_id_
 );
 
@@ -301,6 +305,9 @@ create or replace view Avg_wait_time_by_branch as (
     from Ticket_wait_time
     left join ticket_located_in_branch_
         on ticket_located_in_branch_.ticket_id_ = Ticket_wait_time.ticket_id_
+    left join ticket_log_
+        on ticket_log_.ticket_id_ = Ticket_wait_time.ticket_id_
+    where not ticket_log_.status_id_ = 3
     group by branch_id_
 );
 
@@ -369,7 +376,7 @@ create or replace view Ticket_miss_rate_by_branch as (
     from ticket_located_in_branch_
     left join ticket_log_
         on ticket_log_.ticket_id_ = ticket_located_in_branch_.ticket_id_
-    where ticket_log_.status_id_ = 4
+    where ticket_log_.status_id_ = 3
     group by branch_id_
     order by missed_tickets desc
 );
@@ -384,7 +391,7 @@ create or replace view Ticket_miss_rate_by_user as (
     from user_book_ticket_
     left join ticket_log_
         on ticket_log_.ticket_id_ = user_book_ticket_.ticket_id_
-    where ticket_log_.status_id_ = 4
+    where ticket_log_.status_id_ = 3
     group by user_id_
     order by missed_tickets desc
 );
