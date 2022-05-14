@@ -397,4 +397,3 @@ create or replace view Ticket_miss_rate_by_user as (
 );
 
 select * from Ticket_miss_rate_by_user;
-
